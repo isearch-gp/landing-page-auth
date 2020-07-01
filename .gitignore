@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+angularfirebase-authentication-master.zip
+.gitignore.old
+.angulardoc.json
