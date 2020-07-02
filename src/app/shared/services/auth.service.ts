@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email, password) {
+  OriginalSignIn(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
@@ -41,6 +41,23 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error) => {
+        window.alert(error.message)
+      })
+  }
+
+  // new Sign in with email/password from 
+  // https://github.com/SinghDigamber/angularfirebase-authentication/issues/3
+  SignIn(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.SetUserData(result.user);
+        this.afAuth.authState.subscribe((user) => {
+          if (user) {
+            this.router.navigate(['dashboard']);
+          }
+        })
+      })
+      .catch((error) => {
         window.alert(error.message)
       })
   }
@@ -66,7 +83,7 @@ export class AuthService {
     })
   }
 
-  // Reset Forggot password
+  // Reset Forgot password
   ForgotPassword(passwordResetEmail) {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
@@ -83,9 +100,9 @@ export class AuthService {
   }
 
   // Sign in with Google
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
+  //GoogleAuth() {
+  //  return this.AuthLogin(new auth.GoogleAuthProvider());
+  //}
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
