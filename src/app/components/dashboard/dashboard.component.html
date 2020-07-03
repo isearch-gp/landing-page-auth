@@ -12,8 +12,17 @@
     <nav class="col-md-2 d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
+
+	  <!-- admin page -->
+          <li *ngIf="isAdmin==true" class="nav-item">
+            <a class="nav-link" (click)="gotoAdmin()">
+              <i class="fas fa-sign-out-alt"></i>Admin
+            </a>
+          </li>
+
+	  <!-- user profile -->
           <li class="nav-item">
-            <a class="nav-link active">
+            <a class="nav-link active" (click)="gotoUserProfile()">
               <i class="fas fa-user"></i>User Profile
             </a>
           </li>
@@ -31,6 +40,7 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="inner-adjust">
 
+	<div *ngIf="showUserProfile==true">
         <div class="pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">User Profile</h1>
         </div>
@@ -48,6 +58,46 @@
               </div>
             </div>
           </div>
+        </div>
+        </div>
+
+	<div *ngIf="showUserProfile==false">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Admin Screen</h1>
+        </div>
+        <!-- Show user data when logged in -->
+        <div class="row" *ngIf="authService.userData as user">
+          <div class="col-md-12">
+
+	   <table class="table">
+      <thead>
+        <th>Email</th>
+        <th>Name</th>
+	<!-- <th>ID</th> -->
+        <th>Verified</th>
+        <th>Admin</th>
+        <th>Created</th>
+        <th>LastLogin</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | async ">
+          <td>{{user.email}}</td>
+          <td>{{(user.displayName) ? user.displayName : 'User'}}</td>
+	  <!-- <td>{{user.uid}}</td> -->
+          <td *ngIf="user.emailVerified==true" style="color:green;">{{user.emailVerified}}</td>
+          <td *ngIf="user.emailVerified==false" style="color:red;">{{user.emailVerified}}</td>
+          <td *ngIf="user.isAdmin==true" style="color:blue;">{{user.isAdmin}}</td>
+          <td *ngIf="user.isAdmin!==true" >{{user.isAdmin}}</td>
+          <td>{{user.createTime}}</td>
+          <td>{{user.lastLoggedIn}}</td>
+          <td><button (click)="delUser(user)"><span class="glyphicon glyphicon-trash"></span></button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+          </div>
+        </div>
         </div>
 
       </div>

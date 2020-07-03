@@ -10,12 +10,31 @@ import { Router } from "@angular/router";
 })
 export class DashboardComponent implements OnInit {
 
+  isAdmin: boolean = false;
+  showUserProfile: boolean = true;
+  users: any = null
+
   constructor(
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.isAdmin = this.authService.isUserAdmin();
+    console.log("isAdmin = ", this.isAdmin)
+  }
 
+  gotoAdmin() {
+    console.log("gotoAdmin()")
+    this.showUserProfile = false;
+
+    // read all users data in to a users object for display
+    this.users = this.authService.getUsersData()
+  }
+
+  gotoUserProfile() {
+    console.log("gotoUserProfile()")
+    this.showUserProfile = true;
+  }
 }
