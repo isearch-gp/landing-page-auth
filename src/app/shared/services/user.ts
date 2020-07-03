@@ -4,4 +4,7 @@ export interface User {
    displayName: string;
    photoURL: string;
    emailVerified: boolean;
+   isAdmin: boolean;
+   lastLoggedIn: string;
+   createTime: string;
 }
