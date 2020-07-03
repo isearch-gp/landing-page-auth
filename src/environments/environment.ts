@@ -7,13 +7,13 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyA2lPL21fWLnItpIaEc3dHsiQbDiMOfcu0",
     //authDomain: "project-id.firebaseapp.com",
-    authDomain: "landing-page01.web.app",
-    databaseURL: "https://project-id.firebaseio.com",
+    //authDomain: "landing-page01.web.app",
+    authDomain: "landing-page01.firebaseapp.com",
+    databaseURL: "https://landing-page01.firebaseio.com",
     projectId: "landing-page01",
-    storageBucket: "project-id.appspot.com",
-    messagingSenderId: "sender-id",
-    appId: "1:143120279339:web:41e1fa1cb5f471063e876e",
-    measurementId: "G-measurement-id"
+    storageBucket: "landing-page01.appspot.com",
+    messagingSenderId: "143120279339",
+    appId: "1:143120279339:web:41e1fa1cb5f471063e876e"
   }
 };
 
