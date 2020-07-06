@@ -1,3 +1,46 @@
+<!-- admin edit modal -->
+<ng-template #editUser let-c="close" let-d="dismiss">
+    <div class="modal-header">
+	    <h4 class="modal-title" id="modal-title">Edit User:  
+                {{(singleUser.displayName) ? singleUser.displayName : 'Not Defined'}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+	<p><strong>Email Address:</strong>
+	<input type="text" [(ngModel)]="singleUser.email" ></p>
+	<p><strong>Display Name:</strong>
+	<input type="text" [(ngModel)]="singleUser.displayName" ></p>
+	<p><strong>Verified:</strong> {{singleUser.emailVerified}}</p>
+
+	<p><strong>Admin:</strong>
+	<input type="text" [(ngModel)]="singleUser.displayName" ></p>
+	<p><strong>Created:</strong> {{singleUser.createTime}}</p>
+	<p><strong>LastLogin:</strong> {{singleUser.lastLoggedIn}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+        <!--
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">OK</button>
+	-->
+	<br/>
+	     <button class="btn btn-primary" (click)="changeUserPassword(singleUser)">
+	      <i class="fa fa-key" aria-hidden="true"></i>Change Password
+             </button>
+
+	     <button class="btn btn-primary" (click)="disableUser(singleUser)">
+	      <i class="fa fa-user-slash" aria-hidden="true"></i>Disable User
+             </button>
+
+	     <button class="btn btn-danger" (click)="deleteUser(singleUser)">
+	      <i class="fa fa-trash" aria-hidden="true"></i>Delete User
+             </button>
+    </div>
+</ng-template>
+
+
 <!-- Top navigation -->
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0">
@@ -54,18 +97,18 @@
                 <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
                 <p>User ID: <strong>{{user.uid}}</strong></p>
                 <p>Email: <strong>{{user.email}}</strong></p>
-                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-	     <button class="btn-primary" (click)="changeEmail(user)">
+
+	     <button class="btn btn-primary" (click)="changeEmail(user)">
 	      <i class="fa fa-envelope" aria-hidden="true"></i>Change Email
              </button>
              <br/><br/>
 
-	     <button class="btn-primary" (click)="changePassword(user)">
+	     <button class="btn btn-primary" (click)="changePassword(user)">
 	      <i class="fa fa-key" aria-hidden="true"></i>Change Password
              </button>
              <br/><br/>
 
-	     <button class="btn-danger" (click)="deleteAccount(user)">
+	     <button class="btn btn-danger" (click)="deleteAccount(user)">
 	      <i class="fa fa-trash" aria-hidden="true"></i>Delete Account
              </button>
 
@@ -105,7 +148,7 @@
           <td *ngIf="user.isAdmin!==true" >{{user.isAdmin}}</td>
           <td>{{user.createTime}}</td>
           <td>{{user.lastLoggedIn}}</td>
-          <td><button (click)="delUser(user)">
+          <td><button class="g-btn btn btn-sm btn-outline-secondary" (click)="openModal(editUser,user)">
 	      <i class="fa fa-pencil-alt" aria-hidden="true"></i>
              </button>
 
