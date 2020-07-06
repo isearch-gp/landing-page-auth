@@ -16,7 +16,7 @@
 	  <!-- admin page -->
           <li *ngIf="isAdmin==true" class="nav-item">
             <a class="nav-link" (click)="gotoAdmin()">
-              <i class="fas fa-sign-out-alt"></i>Admin
+              <i class="fas fa-cog fa-spin fa-fw" aria-hidden="true"></i>Admin
             </a>
           </li>
 
@@ -55,6 +55,20 @@
                 <p>User ID: <strong>{{user.uid}}</strong></p>
                 <p>Email: <strong>{{user.email}}</strong></p>
                 <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+	     <button class="btn-primary" (click)="changeEmail(user)">
+	      <i class="fa fa-envelope" aria-hidden="true"></i>Change Email
+             </button>
+             <br/><br/>
+
+	     <button class="btn-primary" (click)="changePassword(user)">
+	      <i class="fa fa-key" aria-hidden="true"></i>Change Password
+             </button>
+             <br/><br/>
+
+	     <button class="btn-danger" (click)="deleteAccount(user)">
+	      <i class="fa fa-trash" aria-hidden="true"></i>Delete Account
+             </button>
+
               </div>
             </div>
           </div>
@@ -78,6 +92,7 @@
         <th>Admin</th>
         <th>Created</th>
         <th>LastLogin</th>
+        <th> </th>
       </thead>
       <tbody>
         <tr *ngFor="let user of users | async ">
@@ -90,7 +105,9 @@
           <td *ngIf="user.isAdmin!==true" >{{user.isAdmin}}</td>
           <td>{{user.createTime}}</td>
           <td>{{user.lastLoggedIn}}</td>
-          <td><button (click)="delUser(user)"><span class="glyphicon glyphicon-trash"></span></button>
+          <td><button (click)="delUser(user)">
+	      <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+             </button>
 
           </td>
         </tr>
