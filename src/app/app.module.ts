@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
+import { FormsModule } from '@angular/forms'
 // Reactive Form
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -24,7 +27,6 @@ import { environment } from '../environments/environment';
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,11 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    NgbModule
+    // NgbModule.forRoot()
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
