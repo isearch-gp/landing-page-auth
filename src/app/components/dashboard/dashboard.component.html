@@ -1,42 +1,77 @@
+<!-- https://stackoverflow.com/questions/46977398/ng-bootstrap-modal-size -->
 <!-- admin edit modal -->
 <ng-template #editUser let-c="close" let-d="dismiss">
     <div class="modal-header">
 	    <h4 class="modal-title" id="modal-title">Edit User:  
-                {{(singleUser.displayName) ? singleUser.displayName : 'Not Defined'}}</h4>
+                {{(singleUser.displayName) ? singleUser.displayName : 'Name Not Defined'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
 	<p><strong>Email Address:</strong>
-	<input type="text" [(ngModel)]="singleUser.email" ></p>
+	<input type="text" size="48" [(ngModel)]="singleUser.email" ></p>
 	<p><strong>Display Name:</strong>
-	<input type="text" [(ngModel)]="singleUser.displayName" ></p>
+	<input type="text" size="48" [(ngModel)]="singleUser.displayName" ></p>
 	<p><strong>Verified:</strong> {{singleUser.emailVerified}}</p>
 
-	<p><strong>Admin:</strong>
-	<input type="text" [(ngModel)]="singleUser.displayName" ></p>
+	<p><strong>Verified:</strong>&nbsp;&nbsp;
+	<ng-toggle
+		onColor="primary"
+      		onText="True"
+		offColor="secondary"
+  		offText="False"
+    		[disabled]=true
+    		[size]="sm"
+    		[(ngModel)]="singleUser.emailVerified"
+	>
+	<input type="checkbox" [(ngModel)]="singleUser.emailVerified">
+	</ng-toggle>
+	</p>
+
+	<div class="custom-control custom-switch">
+	  <label class="custom-control-label" for="switch1">Verified: </label>
+	  <input type="checkbox" class="custom-control-input" name="switch1" id="switch1" [(ng-model)]="singleUser.emailVerified">
+	</div>
+
+	<p><strong>Admin:</strong>&nbsp;&nbsp;
+		<ng-toggle
+		onColor="primary"
+      		onText="True"
+		offColor="secondary"
+  		offText="False"
+    		[disabled]=false
+    		[size]="sm"
+    		[(ngModel)]="singleUser.isAdmin"
+	>
+	<input type="checkbox" [(ngModel)]="singleUser.isAdmin">
+	</ng-toggle>
+	</p>
+
 	<p><strong>Created:</strong> {{singleUser.createTime}}</p>
 	<p><strong>LastLogin:</strong> {{singleUser.lastLoggedIn}}</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+	    <div class="btn-toolbar">
+        <button type="button" class="btn mr-2 btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+        <button type="button" class="btn mr-2 btn-outline-dark" (click)="c('Save click')">Save</button>
         <!--
         <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">OK</button>
 	-->
-	<br/>
-	     <button class="btn btn-primary" (click)="changeUserPassword(singleUser)">
+	</div>
+	<div class="btn-toolbar">
+	     <button class="btn mr-1 btn-primary" (click)="changeUserPassword(singleUser)">
 	      <i class="fa fa-key" aria-hidden="true"></i>Change Password
              </button>
 
-	     <button class="btn btn-primary" (click)="disableUser(singleUser)">
+	     <button class="btn mr-1 btn-primary" (click)="disableUser(singleUser)">
 	      <i class="fa fa-user-slash" aria-hidden="true"></i>Disable User
              </button>
 
 	     <button class="btn btn-danger" (click)="deleteUser(singleUser)">
 	      <i class="fa fa-trash" aria-hidden="true"></i>Delete User
              </button>
+	</div>
     </div>
 </ng-template>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewEncapsulation } from '@angular/core';
 import { Router } from "@angular/router";
 
 import {
@@ -6,19 +6,22 @@ import {
   NgbModal, ModalDismissReasons,
   NgbModalRef // eslint-disable-line no-unused-vars
   } from '@ng-bootstrap/ng-bootstrap' // eslint-disable-line no-unused-vars
+import { NgToggleModule } from '@nth-cloud/ng-toggle'
 
 import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dashboard.component.css'],
   // add NgbModalConfig and NgbModal to the component providers
   providers: [NgbModalConfig, NgbModal]
 })
 export class DashboardComponent implements OnInit {
 
-  isAdmin: boolean = false;
+  //isAdmin: boolean = false;
+  isAdmin: boolean = true;
   showUserProfile: boolean = true;
   users: any = null
   singleUser: any = null
@@ -41,8 +44,9 @@ export class DashboardComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.isAdmin = this.authService.isUserAdmin();
-    console.log("isAdmin = ", this.isAdmin)
+    console.log("isAdmin1 = ", this.isAdmin)
+    //this.isAdmin = this.authService.isUserAdmin();
+    console.log("isAdmin2 = ", this.isAdmin)
   }
 
   gotoAdmin() {

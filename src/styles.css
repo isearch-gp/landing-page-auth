@@ -664,3 +664,9 @@ body .table thead th {
     display: none;
   }
 }
+@media(min-width:576px) {
+	.modal-dialog {
+		width: 550px!important; /* new default */
+		max-width: 550px!important; /* new default */
+	}
+}

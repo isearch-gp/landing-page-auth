@@ -24,6 +24,8 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { NgToggleModule } from '@nth-cloud/ng-toggle'
+
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
 
@@ -45,8 +47,9 @@ import { AuthService } from "./shared/services/auth.service";
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-    NgbModule
-    // NgbModule.forRoot()
+    NgbModule,
+    // NgbModule.forRoot(),
+    NgToggleModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
