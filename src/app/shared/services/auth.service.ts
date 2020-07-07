@@ -1,9 +1,11 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from "../services/user";
+import { UserProfile } from "../services/user-profile";
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,11 @@ import { Router } from "@angular/router";
 
 export class AuthService {
   userData: any; // Save logged in user data
+  userProfile: Observable<UserProfile>
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
+    private afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
@@ -39,7 +42,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
-        this.SetUserData(result.user);
+        this.SetUserData(result.user, false);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -50,11 +53,15 @@ export class AuthService {
   SignIn(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-      this.SetUserData(result.user);  // refresh
+      //this.SetUserData(result.user);  // refresh
         this.afAuth.authState.subscribe((user) => {
-          if (user) {
+	  if (user) {
+	     console.log("SignIn:user=",user)
+	    //this.SetUserData(user);
             this.router.navigate(['dashboard']);
           }
+          console.log("SignIn:result.user=", result.user)
+          this.SetUserData(result.user,false);  // refresh
         })
       })
       .catch((error) => {
@@ -71,7 +78,7 @@ export class AuthService {
 	this.SendVerificationMail();
 
 	//console.log("result.user =",result.user)
-        this.SetUserData(result.user);
+        this.SetUserData(result.user, true);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -104,7 +111,15 @@ export class AuthService {
   // Returns true when user is logged in and email is verified and isAdmin
   isUserAdmin(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false && user.isAdmin !== false) ? true : false;
+
+    if (user != null && user.uid != null) {
+      this.userProfile = this.getUserRecord(user.uid).valueChanges();
+      //return (this.userProfile !== null && this.userProfile.isAdmin == true) ? true : false;
+      return (this.userProfile !== null) ? false : true; // for now
+    } else {
+      return false
+    }
+    //return (user !== null && user.emailVerified !== false && user.isAdmin == true) ? true : false;
   }
 
   // Sign in with Google
@@ -119,7 +134,7 @@ export class AuthService {
        this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         })
-      this.SetUserData(result.user);
+      this.SetUserData(result.user, false);
     }).catch((error) => {
       window.alert(error)
     })
@@ -128,20 +143,29 @@ export class AuthService {
   /* Setting up user data when sign in with username/password,
   sign up with username/password and sign in with social auth
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user) {
+  SetUserData(user, force:boolean) {
   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    let anyUserData: any = null
     const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      isAdmin: false,
       lastLoggedIn: user.metadata.lastSignInTime,
       createTime: user.metadata.creationTime
     }
+    anyUserData = userData
+    // if force then isAdmin = false (on signup)
+    if (force) {
+      anyUserData.isAdmin = false
+    } else {
+      // keep current value
+    }
     //console.log("uid =",user.uid)
-    return userRef.set(userData, {
+    console.log("force =",force)
+    console.log("userData =",userData)
+    return userRef.set(anyUserData, {
       merge: true
       })
   }
@@ -159,23 +183,9 @@ export class AuthService {
      things.subscribe(console.log);
 
      return things;
-     /***
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
-      isAdmin: false,
-      lastLoggedIn: user.metadata.lastSignInTime,
-      createTime: user.metadata.creationTime
-    }
-    //console.log("uid =",user.uid)
-    return userRef.set(userData, {
-      merge: true
-    })
-      ***/
   }
 
+  getUserRecord(uId: string): AngularFirestoreDocument<UserProfile> {
+    return this.afs.collection('users').doc(uId);
+  }
 }
