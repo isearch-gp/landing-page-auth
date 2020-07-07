@@ -22,6 +22,8 @@ describe('AuthService', () => {
     })
   }));
 
+  // or stub it with: https://github.com/angular/angularfire/issues/1706
+
 
   it('should be created', () => {
     const service: AuthService = TestBed.get(AuthService);
