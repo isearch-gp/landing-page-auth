@@ -19,7 +19,10 @@ import { AuthService } from "../../shared/services/auth.service";
   providers: [NgbModalConfig, NgbModal]
 })
 export class DashboardComponent implements OnInit {
-
+  
+  // for alert
+  isAlertDisplayed = true;
+  
   //isAdmin: boolean = false;
   isAdmin: boolean = true;
   showUserProfile: boolean = true;
