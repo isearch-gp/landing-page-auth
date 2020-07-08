@@ -1,5 +1,6 @@
 @import '~ngx-ui-switch/ui-switch.component.css';
 
+/*** none of the below remove the "box" arround switch
 .switch {
 	border: 0px!important;
 	border: none!important;
@@ -9,4 +10,4 @@
 	  box-shadow: none!important;
 	}
 }
-
+***/
