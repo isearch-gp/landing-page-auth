@@ -31,6 +31,18 @@
 	</ng-toggle>
 	</p>
 
+	<p><strong>Verified:</strong>&nbsp;&nbsp;
+	<ui-switch
+        	[(ngModel)]="singleUser.emailVerified" 
+    		[disabled]=true
+  		color="#007bff"
+  		checkedLabel="True"
+  		checkedTextColor="white"
+    		uncheckedLabel="False"
+	>
+	</ui-switch>
+	</p>
+
 	<!--
 	<div class="custom-control custom-switch">
 	  <label class="custom-control-label" for="switch1">Verified: </label>
@@ -38,6 +50,7 @@
 	</div>
 	-->
 
+	<!--
 	<p><strong>Admin:</strong>&nbsp;&nbsp;
 		<ng-toggle
 		onColor="primary"
@@ -50,6 +63,33 @@
 	>
 	<input type="checkbox" [(ngModel)]="singleUser.isAdmin">
 	</ng-toggle>
+	</p>
+	-->
+	<!--
+	<p><strong>Admin:</strong>&nbsp;&nbsp;
+	<ui-switch
+        	[(ngModel)]="singleUser.isAdmin" 
+    		[disabled]=false
+		size="small"
+  		checkedLabel="True"
+    		uncheckedLabel="False"
+	>
+	</ui-switch>
+	</p>
+	-->
+
+	<!-- color = primary -->
+	<!-- default size="medium" -->
+	<p><strong>Admin:</strong>&nbsp;&nbsp;
+	<ui-switch
+        	[(ngModel)]="singleUser.isAdmin" 
+    		[disabled]=false
+  		color="#007bff"
+  		checkedLabel="True"
+  		checkedTextColor="white"
+    		uncheckedLabel="False"
+	>
+	</ui-switch>
 	</p>
 
 	<p><strong>Created:</strong> {{singleUser.createTime}}</p>

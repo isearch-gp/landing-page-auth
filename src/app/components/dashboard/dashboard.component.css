@@ -1,0 +1,12 @@
+@import '~ngx-ui-switch/ui-switch.component.css';
+
+.switch {
+	border: 0px!important;
+	border: none!important;
+	box-shadow: none!important;
+
+	small {
+	  box-shadow: none!important;
+	}
+}
+
