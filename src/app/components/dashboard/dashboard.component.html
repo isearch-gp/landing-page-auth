@@ -17,6 +17,7 @@
 	<p><strong>Verified:</strong> {{singleUser.emailVerified}}</p>
 	-->
 
+	<!-- replaced
 	<p><strong>Verified:</strong>&nbsp;&nbsp;
 	<ng-toggle
 		onColor="primary"
@@ -30,6 +31,7 @@
 	<input type="checkbox" [(ngModel)]="singleUser.emailVerified">
 	</ng-toggle>
 	</p>
+	-->
 
 	<p><strong>Verified:</strong>&nbsp;&nbsp;
 	<ui-switch
@@ -43,14 +45,14 @@
 	</ui-switch>
 	</p>
 
-	<!--
+	<!-- did NOT work
 	<div class="custom-control custom-switch">
 	  <label class="custom-control-label" for="switch1">Verified: </label>
 	  <input type="checkbox" class="custom-control-input" name="switch1" id="switch1" [(ng-model)]="singleUser.emailVerified">
 	</div>
 	-->
 
-	<!--
+	<!-- replaced
 	<p><strong>Admin:</strong>&nbsp;&nbsp;
 		<ng-toggle
 		onColor="primary"
@@ -63,18 +65,6 @@
 	>
 	<input type="checkbox" [(ngModel)]="singleUser.isAdmin">
 	</ng-toggle>
-	</p>
-	-->
-	<!--
-	<p><strong>Admin:</strong>&nbsp;&nbsp;
-	<ui-switch
-        	[(ngModel)]="singleUser.isAdmin" 
-    		[disabled]=false
-		size="small"
-  		checkedLabel="True"
-    		uncheckedLabel="False"
-	>
-	</ui-switch>
 	</p>
 	-->
 

@@ -25,7 +25,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 // toggles - need to pick one
-import { NgToggleModule } from '@nth-cloud/ng-toggle'
+//import { NgToggleModule } from '@nth-cloud/ng-toggle'
 import { UiSwitchModule } from 'ngx-ui-switch'
 
 // Auth service
@@ -51,7 +51,7 @@ import { AuthService } from "./shared/services/auth.service";
     FormsModule,
     NgbModule,
     // NgbModule.forRoot(),
-    NgToggleModule,
+    //NgToggleModule,
     UiSwitchModule
   ],
   providers: [AuthService],

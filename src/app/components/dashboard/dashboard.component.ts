@@ -6,8 +6,7 @@ import {
   NgbModal, ModalDismissReasons,
   NgbModalRef // eslint-disable-line no-unused-vars
   } from '@ng-bootstrap/ng-bootstrap' // eslint-disable-line no-unused-vars
-import { NgToggleModule } from '@nth-cloud/ng-toggle'
-//import { UiSwitchModule } from 'ngx-ui-switch'
+//import { NgToggleModule } from '@nth-cloud/ng-toggle'
 
 import { AuthService } from "../../shared/services/auth.service";
 
