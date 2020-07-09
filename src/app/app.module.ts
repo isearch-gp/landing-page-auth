@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
-import { FormsModule } from '@angular/forms'
-// Reactive Form
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { NgBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
 
 // App routing modules
 import { AppRoutingModule } from './shared/routing/app-routing.module';
@@ -46,13 +45,17 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     // NgbModule.forRoot(),
     //NgToggleModule,
-    UiSwitchModule
+    UiSwitchModule,
+    NgBootstrapFormValidationModule.forRoot(),
+    // only import both if single module
+    // import below in non-app modules
+    NgBootstrapFormValidationModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

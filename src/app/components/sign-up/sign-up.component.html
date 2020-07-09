@@ -11,18 +11,61 @@
     <div class="authBlock">
       <h3>Sign Up</h3>
 
+      <form [formGroup]="formGroup" (validSubmit)="onSubmit(formGroup)">
       <div class="formGroup">
-        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
+        <input type="email" class="formControl" placeholder="Email Address"          formControlName="Email" aria-describedby="emailHelpBlock">
+	<small id="emailHelpBlock" class="form-text text-muted">
+		A valid email address is required.
+	</small>
+	<bfv-messages></bfv-messages>
       </div>
 
       <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPwd required>
+        <input type="password" class="formControl" placeholder="Password" formControlName="Password" required minlength="8" maxlength="20" appForbidden="password" aria-describedby="pwdHelpBlock">
+	<small id="pwdHelpBlock" class="form-text text-muted">
+		Your password must be 8-20 characters long.
+	</small>
+	<bfv-messages></bfv-messages>
+      </div>
+      <!-- validation alerts for password --
+      <div *ngIf="userPwd.invalid && (userPwd.dirty || userPwd.touched)">
+	      <ngb-alert [dismissible]="true" (close)="userPwd.untouched=true;" type="failure">
+	      == specific alerts ==
+	      <div *ngIf="userPwd.errors.required">
+	      Password is required
+	      </div>
+
+	      <div *ngIf="userPwd.errors.minlength">
+	      Password must be at least 8 characters
+	      </div>
+
+	      <div *ngIf="userPwd.errors.maxlength">
+	      Password must be no more than 20 characters
+	      </div>
+
+	      <div *ngIf="userPwd.errors.forbiddenName">
+	      Password cannot be password
+	      </div>
+      </ngb-alert>
+      </div>
+      -->
+
+      <div class="formGroup form-check">
+        <input type="checkbox" class="form-check-input" formControlName="acceptTerms" aria-describedby="tnclHelpBlock">
+	<small id="tncHelpBlock" class="form-text text-muted">
+		Accept <a href="#">Terms & Conditions</a>
+	</small>
+	<bfv-messages></bfv-messages>
       </div>
 
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
-      </div>
 
+      <div *ngIf="formGroup.valid" class="formGroup">
+	      <button type="submit" class="btn btnPrimary">Sign Up</button>
+      </div>
+      <div *ngIf="formGroup.invalid" class="formGroup">
+	      <button type="button" class="btn btnSecondary" disabled>Sign Up</button>
+      </div>
+      </form>
     </div>
 
     <div class="redirectToLogin">
