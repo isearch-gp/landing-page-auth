@@ -22,7 +22,6 @@ export class SignUpComponent implements OnInit {
     this.formGroup = new FormGroup ({
       Email: new FormControl('', [
         Validators.required,
-	//Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+*$/)
 	Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 	]),
       Password: new FormControl('', [
@@ -38,10 +37,10 @@ export class SignUpComponent implements OnInit {
 
   //onSubmit(f ngForm) {
   onSubmit(f: FormGroup) {
-    alert('success: \n\n')
-    alert('email='+ f.value.Email)
-    alert('password='+ f.value.Password)
-    alert('tnc='+ f.value.acceptTerms)
+    alert('success: \n\n'+
+      'email='+ f.value.Email+
+      '\npassword='+ f.value.Password+
+      '\ntnc='+ f.value.acceptTerms)
     console.log(f.value)
     //alert('success: \n\n' + JSON.stringify(this.model, null, 4))
     //authService.SignUp(userEmail.value, userPwd.value)

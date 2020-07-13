@@ -12,20 +12,23 @@
       <h3>Sign Up</h3>
 
       <form [formGroup]="formGroup" (validSubmit)="onSubmit(formGroup)">
-      <div class="formGroup">
-        <input type="email" class="formControl" placeholder="Email Address"          formControlName="Email" aria-describedby="emailHelpBlock">
+      <div class="form-group">
+	<label class="control-label" hidden>Email</label>
+        <input type="email" class="form-control" placeholder="Email Address"          formControlName="Email" aria-describedby="emailHelpBlock">
 	<small id="emailHelpBlock" class="form-text text-muted">
 		A valid email address is required.
 	</small>
-	<bfv-messages></bfv-messages>
       </div>
 
-      <div class="formGroup">
+      <div class="form-group">
+	<label class="control-label" hidden>Password</label>
+	<!--
         <input type="password" class="formControl" placeholder="Password" formControlName="Password" required minlength="8" maxlength="20" appForbidden="password" aria-describedby="pwdHelpBlock">
+	-->
+        <input type="password" class="formControl" placeholder="Password" formControlName="Password" aria-describedby="pwdHelpBlock">
 	<small id="pwdHelpBlock" class="form-text text-muted">
 		Your password must be 8-20 characters long.
 	</small>
-	<bfv-messages></bfv-messages>
       </div>
       <!-- validation alerts for password --
       <div *ngIf="userPwd.invalid && (userPwd.dirty || userPwd.touched)">
@@ -50,12 +53,12 @@
       </div>
       -->
 
-      <div class="formGroup form-check">
+      <div class="form-group form-check">
+	<label class="control-label" hidden>Terms & Conditions</label>
         <input type="checkbox" class="form-check-input" formControlName="acceptTerms" aria-describedby="tnclHelpBlock">
 	<small id="tncHelpBlock" class="form-text text-muted">
 		Accept <a href="#">Terms & Conditions</a>
 	</small>
-	<bfv-messages></bfv-messages>
       </div>
 
 
