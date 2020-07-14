@@ -15,7 +15,7 @@
       <div class="form-group">
 	<label class="control-label" hidden>Email</label>
         <input type="email" class="form-control" placeholder="Email Address"          formControlName="Email" aria-describedby="emailHelpBlock">
-	<small id="emailHelpBlock" class="form-text text-muted">
+	<small id="emailHelpBlock" class="form-text text-muted" hidden>
 		A valid email address is required.
 	</small>
       </div>
@@ -25,8 +25,8 @@
 	<!--
         <input type="password" class="formControl" placeholder="Password" formControlName="Password" required minlength="8" maxlength="20" appForbidden="password" aria-describedby="pwdHelpBlock">
 	-->
-        <input type="password" class="formControl" placeholder="Password" formControlName="Password" aria-describedby="pwdHelpBlock">
-	<small id="pwdHelpBlock" class="form-text text-muted">
+        <input type="password" class="form-control" placeholder="Password (8 to 20 characters)" formControlName="Password" aria-describedby="pwdHelpBlock">
+	<small id="pwdHelpBlock" class="form-text text-muted" hidden>
 		Your password must be 8-20 characters long.
 	</small>
       </div>
