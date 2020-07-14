@@ -37,13 +37,16 @@ export class SignUpComponent implements OnInit {
 
   //onSubmit(f ngForm) {
   onSubmit(f: FormGroup) {
+    /***
     alert('success: \n\n'+
       'email='+ f.value.Email+
       '\npassword='+ f.value.Password+
       '\ntnc='+ f.value.acceptTerms)
+      ***/
     console.log(f.value)
     //alert('success: \n\n' + JSON.stringify(this.model, null, 4))
     //authService.SignUp(userEmail.value, userPwd.value)
+    this.authService.SignUp(f.value.Email, f.value.Password)
   }
 
   onReset() {
