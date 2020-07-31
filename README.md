@@ -25,6 +25,18 @@ https://fireship.io/snippets/check-if-current-user-exists-with-angularfire/
 https://www.freecodecamp.org/news/angular-2-authentication-made-easy-with-firebase-246c282d9ef8/
 <br/><br/>
 
+https://coursetro.com/posts/code/32/Create-a-Full-Angular-Authentication-System-with-Firebase
+<br/><br/>
+
+https://codehandbook.org/how-to-make-login-page-using-angular-and-firebase/
+<br/><br/>
+
+https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
+<br/><br/>
+
+https://www.techiediaries.com/angular-firebase/angular-9-firebase-authentication-email-google-and-password/
+<br/><br/>
+
 https://www.toptal.com/firebase/role-based-firebase-authentication  
 https://github.com/joaqcid/firebase-user-role-api
 <br/><br/>
