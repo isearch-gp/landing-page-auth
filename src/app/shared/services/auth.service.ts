@@ -1,9 +1,13 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from "../services/user";
 import { UserProfile } from "../services/user-profile";
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+//import { auth } from 'firebase/app';
+//import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
+//import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+//import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 
@@ -37,7 +41,7 @@ export class AuthService {
 
   // Sign in with email/password
   OriginalSignIn(email, password) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
@@ -51,7 +55,8 @@ export class AuthService {
   // new Sign in with email/password from 
   // https://github.com/SinghDigamber/angularfirebase-authentication/issues/3
   SignIn(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    //return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
       //this.SetUserData(result.user);  // refresh
         this.afAuth.authState.subscribe((user) => {
@@ -71,7 +76,8 @@ export class AuthService {
 
   // Sign up with email/password
   SignUp(email, password) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    //return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
@@ -85,8 +91,9 @@ export class AuthService {
   }
 
   // Send email verificaiton when new user sign up
-  SendVerificationMail() {
-    return this.afAuth.auth.currentUser.sendEmailVerification()
+  async SendVerificationMail() {
+    //return this.afAuth.auth.currentUser.sendEmailVerification()
+    return await this.afAuth.currentUser.sendEmailVerification()
     .then(() => {
       this.router.navigate(['verify-email-address']);
     })
@@ -94,7 +101,8 @@ export class AuthService {
 
   // Reset Forgot password
   ForgotPassword(passwordResetEmail) {
-    return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
+    //return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
+    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
       window.alert('Password reset email sent, check your inbox.');
     }).catch((error) => {
@@ -129,7 +137,8 @@ export class AuthService {
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
+    //return this.afAuth.auth.signInWithPopup(provider)
+    return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
@@ -172,7 +181,8 @@ export class AuthService {
 
   // Sign out
   SignOut() {
-    return this.afAuth.auth.signOut().then(() => {
+    //return this.afAuth.auth.signOut().then(() => {
+    return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
     })
