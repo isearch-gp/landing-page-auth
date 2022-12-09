@@ -44,6 +44,10 @@ https://github.com/joaqcid/firebase-user-role-api
 https://cliffordhall.com/2016/03/user-profiles-angular-firebase/
 <br/><br/>
 
+## AngularFire 7 and Firebase 9
+https://github.com/code1ogic/Angular-Firebase-crud/blob/main/src/app/shared/auth.service.ts
+<br/><br/>
+
 ## Angular and Firebase CRUD
 https://angular-templates.io/tutorials/about/angular-crud-with-firebase  
 https://github.com/AngularTemplates/angular-firebase-crud/tree/master/src/app/home
