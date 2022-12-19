@@ -1,30 +1,31 @@
-//import { async, TestBed } from '@angular/core/testing';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
+//import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing'
 
 // Firebase services + enviorment module
 //import { AngularFireModule } from "@angular/fire";
 //import { AngularFireAuthModule } from "@angular/fire/auth";
 //import { AngularFirestoreModule } from '@angular/fire/firestore';
-//import { AngularFireModule } from "@angular/fire/compat";
-//import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-//import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from '../../../environments/environment';
 
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
 
-/**** old
+/**** old ***/
 //beforeEach(() => TestBed.configureTestingModule({}));
   beforeEach(async(() => {
     TestBed.configureTestingModule({
     imports: [
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule,
-      AngularFirestoreModule,
+      //AngularFirestore,
       RouterTestingModule
-    ]
+    ],
+    providers: [AuthService, AngularFirestore ]
     })
   }));
 
@@ -35,7 +36,8 @@ describe('AuthService', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
-***/
+/***/
+/*** new
   let component: AuthService;
   let fixture: ComponentFixture<AuthService>;
 
@@ -55,4 +57,5 @@ describe('AuthService', () => {
     it('should create', () => {
     expect(component).toBeTruthy();
   });
+***/
 });

@@ -1,9 +1,11 @@
+// from https://www.positronx.io/full-angular-firebase-authentication-system/
+//
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "../services/user";
+import { LocalUser } from "../services/local-user";
 import { UserProfile } from "../services/user-profile";
 //import { auth } from 'firebase/app';
 //import firebase from 'firebase/app';
-import firebase from 'firebase/compat/app';
+//import firebase from 'firebase/compat/app';
 //import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 //import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -81,7 +83,7 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
-	this.SendVerificationMail();
+	this.SendVerificationMail(result.user);
 
 	//console.log("result.user =",result.user)
         this.SetUserData(result.user, true);
@@ -91,11 +93,13 @@ export class AuthService {
   }
 
   // Send email verificaiton when new user sign up
-  async SendVerificationMail() {
+  SendVerificationMail(user: any) {
     //return this.afAuth.auth.currentUser.sendEmailVerification()
-    return await this.afAuth.currentUser.sendEmailVerification()
-    .then(() => {
+    return user.sendEmailVerification()
+    .then((res: any) => {
       this.router.navigate(['verify-email-address']);
+    }, (err: any) => {
+	    alert('something went wrong. Not able to send email')
     })
   }
 
@@ -152,10 +156,10 @@ export class AuthService {
   /* Setting up user data when sign in with username/password,
   sign up with username/password and sign in with social auth
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user, force:boolean) {
+  SetUserData(user: any, force: boolean) {
   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     let anyUserData: any = null
-    const userData: User = {
+    const userData: LocalUser = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,

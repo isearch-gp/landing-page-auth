@@ -18,9 +18,24 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 // Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+/*** old angularfire 6 compat
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+***/
+/*** new angularfire 7 + firebase 9 **/
+import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app'
+import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth'
+//import { BUCKET } from '@angular/fire/storage'
+import {
+  connectFirestoreEmulator,
+  Firestore,
+  getFirestore,
+  initializeFirestore,
+  provideFirestore,
+} from '@angular/fire/firestore'
+//import { connectFunctionsEmulator, Functions, getFunctions, provideFunctions } from '@angular/fire/functions'
+//import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage'
 import { environment } from '../environments/environment';
 
 // toggles - need to pick one
@@ -42,9 +57,49 @@ import { AuthService } from "./shared/services/auth.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    /*** old
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    AngularFirestore,
+   ***/
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => {
+      let auth = getAuth()
+      if (environment.useEmulators) {
+        connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: false })
+      }
+      return auth
+    }),
+    provideFirestore(() => {
+      let firestore: Firestore
+      if (environment.useEmulators) {
+        // long polling for Cypress
+        firestore = initializeFirestore(getApp(), {
+          experimentalForceLongPolling: true,
+        })
+        connectFirestoreEmulator(firestore, 'localhost', 8080)
+      } else {
+        firestore = getFirestore()
+      }
+      return firestore
+    }),
+    /*** no storage or functions
+    provideStorage(() => {
+      const storage = getStorage()
+      if (environment.useEmulators) {
+        connectStorageEmulator(storage, 'localhost', 9199)
+      }
+      return storage
+    }),
+    provideFunctions(() => {
+      let functions: Functions
+      functions = getFunctions()
+      if (environment.useEmulators) {
+        connectFunctionsEmulator(functions, 'localhost', 5001)
+      }
+      return functions
+    }),
+   ***/
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -57,7 +112,15 @@ import { AuthService } from "./shared/services/auth.service";
     // import below in non-app modules
     NgBootstrapFormValidationModule
   ],
-  providers: [AuthService],
+  providers: [
+     AuthService,
+     /*** no storage
+     {
+       provide: BUCKET,
+       useValue: environment.firebase.storageBucket,
+     }
+    ***/
+  ],
   bootstrap: [AppComponent]
 })
 

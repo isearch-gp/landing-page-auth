@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from '../../../environments/environment';
 
 // Auth service
@@ -22,10 +22,10 @@ describe('VerifyEmailMessageComponent', () => {
     imports: [
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule,
-      AngularFirestoreModule,
+      //AngularFirestore,
       RouterTestingModule
     ],
-    providers: [AuthService]
+    providers: [AuthService, AngularFirestore]
     })
     .compileComponents();
   }));

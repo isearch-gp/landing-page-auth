@@ -1,4 +1,4 @@
-export interface User { // just values in fireauth user
+export interface LocalUser { // just values in fireauth user
    uid: string;
    email: string;
    displayName: string;
