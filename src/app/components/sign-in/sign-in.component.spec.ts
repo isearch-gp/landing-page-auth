@@ -17,6 +17,8 @@ describe('SignInComponent', () => {
   let fixture: ComponentFixture<SignInComponent>;
 
   beforeEach(async(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 49000; // Chrome disconnects in 30s
+    
     TestBed.configureTestingModule({
       declarations: [ SignInComponent ],
     imports: [

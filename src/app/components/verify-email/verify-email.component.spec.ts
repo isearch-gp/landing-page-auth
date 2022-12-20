@@ -17,6 +17,8 @@ describe('VerifyEmailMessageComponent', () => {
   let fixture: ComponentFixture<VerifyEmailComponent>;
 
   beforeEach(async(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 29000; // Chrome disconnects in 30s
+    
     TestBed.configureTestingModule({
       declarations: [ VerifyEmailComponent ],
     imports: [

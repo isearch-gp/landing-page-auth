@@ -23,6 +23,8 @@ describe('ForgotPasswordComponent', () => {
   let fixture: ComponentFixture<ForgotPasswordComponent>;
 
   beforeEach(async(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 49000; // Chrome disconnects in 30s
+    
     TestBed.configureTestingModule({
       declarations: [ ForgotPasswordComponent ],
     imports: [

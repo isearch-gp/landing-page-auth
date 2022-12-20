@@ -23,7 +23,7 @@ describe('DashboardComponent', () => {
   beforeEach(async(() => {
     //jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000; // now get DISCONNECTED
     //jasmine.DEFAULT_TIMEOUT_INTERVAL = 29000; // Chrome disconnects in 30s
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 49000; // Chrome disconnects in 30s
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 29000; // Chrome disconnects in 30s
 
     TestBed.configureTestingModule({
     declarations: [ DashboardComponent ],
