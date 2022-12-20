@@ -27,7 +27,7 @@
     "bootstrap": "4.6.2",
     "core-js": "3.26.1",
     "firebase": "9.4.0",
-    "firebase-tools": "^9.10.0",
+    "firebase-tools": "^9.23.3",
     "firebaseui": "4.8.1",
     "ngx-ui-switch": "12.0.2",
     "rxjs": "6.6.7",
