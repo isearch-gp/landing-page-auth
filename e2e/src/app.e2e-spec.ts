@@ -9,6 +9,9 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to angularfirebase-authentication!');
+    
+    //console.log(page.getParagraphText())
+    //expect(page.getParagraphText()).toEqual('Welcome to angularfirebase-authentication!');
+    expect(page.getParagraphText()).toEqual('Sign In');
   });
 });
