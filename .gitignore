@@ -1,3 +1,5 @@
+# .gitignore for angular/typescript/node
+
 # Logs
 logs
 *.log
@@ -102,7 +104,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+
 angularfirebase-authentication-master.zip
 .gitignore.old
 .angulardoc.json
 .firebase/hosting.ZGlzdFxsYW5kaW5nLXBhZ2UtYXV0aA.cache
+.angular/cache/
