@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NgBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
+//import { NgBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
 
 // App routing modules
 import { AppRoutingModule } from './shared/routing/app-routing.module';
@@ -107,10 +107,10 @@ import { AuthService } from "./shared/services/auth.service";
     // NgbModule.forRoot(),
     //NgToggleModule,
     UiSwitchModule,
-    NgBootstrapFormValidationModule.forRoot(),
+    //NgBootstrapFormValidationModule.forRoot(),
     // only import both if single module
     // import below in non-app modules
-    NgBootstrapFormValidationModule
+    //NgBootstrapFormValidationModule
   ],
   providers: [
      AuthService,
