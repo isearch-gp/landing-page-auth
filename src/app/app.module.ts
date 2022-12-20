@@ -18,12 +18,12 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 // Firebase services + enviorment module
-/*** old angularfire 6 compat
+/*** old angularfire 6 compat **/
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-***/
-/*** new angularfire 7 + firebase 9 **/
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+/*** ***/
+/*** new angularfire 7 + firebase 9 
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth'
 //import { BUCKET } from '@angular/fire/storage'
@@ -34,6 +34,7 @@ import {
   initializeFirestore,
   provideFirestore,
 } from '@angular/fire/firestore'
+***/
 //import { connectFunctionsEmulator, Functions, getFunctions, provideFunctions } from '@angular/fire/functions'
 //import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage'
 import { environment } from '../environments/environment';
@@ -57,12 +58,13 @@ import { AuthService } from "./shared/services/auth.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    /*** old
+    /*** old ***/
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestore,
-   ***/
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFirestoreModule.enablePersistence(),
+   /*** ***/
+    //provideFirebaseApp(() => initializeApp(environment.firebase)),
+    /***
     provideAuth(() => {
       let auth = getAuth()
       if (environment.useEmulators) {
@@ -70,6 +72,8 @@ import { AuthService } from "./shared/services/auth.service";
       }
       return auth
     }),
+   ***/
+   /***
     provideFirestore(() => {
       let firestore: Firestore
       if (environment.useEmulators) {
@@ -83,6 +87,7 @@ import { AuthService } from "./shared/services/auth.service";
       }
       return firestore
     }),
+   ***/
     /*** no storage or functions
     provideStorage(() => {
       const storage = getStorage()
