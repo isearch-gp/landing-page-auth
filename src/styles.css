@@ -234,6 +234,15 @@ input:-moz-placeholder {
   text-decoration: underline;
 }
 
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.media-body {
+  flex: 1;
+}
+
 /* * Sidebar */
 .sidebar {
   position: fixed;

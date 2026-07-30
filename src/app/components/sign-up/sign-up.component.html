@@ -12,7 +12,7 @@
       <h3>Sign Up</h3>
 
       <form [formGroup]="formGroup" (validSubmit)="onSubmit(formGroup)">
-      <div class="form-group">
+      <div class="mb-3">
 	<label class="control-label" hidden>Email</label>
         <input type="email" class="form-control" placeholder="Email Address"          formControlName="Email" aria-describedby="emailHelpBlock">
 	<small id="emailHelpBlock" class="form-text text-muted" hidden>
@@ -20,7 +20,7 @@
 	</small>
       </div>
 
-      <div class="form-group">
+      <div class="mb-3">
 	<label class="control-label" hidden>Password</label>
 	<!--
         <input type="password" class="formControl" placeholder="Password" formControlName="Password" required minlength="8" maxlength="20" appForbidden="password" aria-describedby="pwdHelpBlock">
@@ -53,7 +53,7 @@
       </div>
       -->
 
-      <div class="form-group form-check">
+      <div class="mb-3 form-check">
 	<label class="control-label" hidden>Terms & Conditions</label>
         <input type="checkbox" class="form-check-input" formControlName="acceptTerms" aria-describedby="tnclHelpBlock">
 	<small id="tncHelpBlock" class="form-text text-muted">

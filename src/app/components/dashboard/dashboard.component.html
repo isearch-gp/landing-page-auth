@@ -4,9 +4,7 @@
     <div class="modal-header">
 	    <h4 class="modal-title" id="modal-title">Edit User:  
                 {{(singleUser.displayName) ? singleUser.displayName : 'Name Not Defined'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
     <div class="modal-body">
 	<p><strong>Email Address:</strong>
@@ -87,18 +85,18 @@
     </div>
     <div class="modal-footer">
 	    <div class="btn-toolbar">
-        <button type="button" class="btn mr-2 btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
-        <button type="button" class="btn mr-2 btn-outline-dark" (click)="c('Save click')">Save</button>
+        <button type="button" class="btn me-2 btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+        <button type="button" class="btn me-2 btn-outline-dark" (click)="c('Save click')">Save</button>
         <!--
         <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">OK</button>
 	-->
 	</div>
 	<div class="btn-toolbar">
-	     <button class="btn mr-1 btn-primary" (click)="changeUserPassword(singleUser)">
+	     <button class="btn me-1 btn-primary" (click)="changeUserPassword(singleUser)">
 	      <i class="fa fa-key" aria-hidden="true"></i>Change Password
              </button>
 
-	     <button class="btn mr-1 btn-primary" (click)="disableUser(singleUser)">
+	     <button class="btn me-1 btn-primary" (click)="disableUser(singleUser)">
 	      <i class="fa fa-user-slash" aria-hidden="true"></i>Disable User
              </button>
 
@@ -112,7 +110,7 @@
 
 <!-- Top navigation -->
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+  <a class="navbar-brand col-sm-3 col-md-2 me-0">
     <img class="brand-logo" src="assets/IterativeSearch_LOGO_RGB.png" alt="isearch Logo">
   </a>
 </nav>
@@ -149,7 +147,7 @@
     </nav>
 
     <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-4">
       <div class="inner-adjust">
 
 	<div *ngIf="showUserProfile==true">
@@ -160,7 +158,7 @@
         <div class="row" *ngIf="authService.userData as user">
           <div class="col-md-12">
             <div class="media">
-              <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+              <img class="align-self-start me-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
                 alt="{{user.displayName}}">
               <div class="media-body">
                 <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
