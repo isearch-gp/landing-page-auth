@@ -6,6 +6,7 @@ import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-verify-email',
+  standalone: false,
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.css']
 })

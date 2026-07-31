@@ -3,6 +3,7 @@ import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-sign-in',
+  standalone: false,
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
