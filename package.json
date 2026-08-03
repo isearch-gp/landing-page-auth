@@ -40,9 +40,9 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.32",
     "@angular-devkit/schematics": "^20.3.32",
-    "@angular-eslint/eslint-plugin": "15.2.1",
-    "@angular-eslint/eslint-plugin-template": "15.2.1",
-    "@angular-eslint/template-parser": "15.2.1",
+    "@angular-eslint/eslint-plugin": "22.1.0",
+    "@angular-eslint/eslint-plugin-template": "22.1.0",
+    "@angular-eslint/template-parser": "22.1.0",
     "@angular/cli": "20.3.32",
     "@angular/compiler-cli": "20.3.27",
     "@angular/language-service": "20.3.27",
