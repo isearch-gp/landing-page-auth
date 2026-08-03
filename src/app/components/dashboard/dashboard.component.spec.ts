@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing'
 
 // Firebase services + enviorment module
@@ -20,7 +20,7 @@ describe('DashboardComponent', () => {
 
   //jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;  // default is 60000?
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     //jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000; // now get DISCONNECTED
     //jasmine.DEFAULT_TIMEOUT_INTERVAL = 29000; // Chrome disconnects in 30s
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 29000; // Chrome disconnects in 30s
@@ -50,7 +50,7 @@ describe('DashboardComponent', () => {
   });
   ***/
 
-  it('should create the app', async(inject([AuthService], (myService: AuthService) => {
+  it('should create the app', waitForAsync(inject([AuthService], (myService: AuthService) => {
     const fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.debugElement.componentInstance;
 

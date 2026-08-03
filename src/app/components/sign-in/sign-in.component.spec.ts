@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing'
 
 // Firebase services + enviorment module
@@ -16,7 +16,7 @@ describe('SignInComponent', () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 49000; // Chrome disconnects in 30s
     
     TestBed.configureTestingModule({
@@ -32,7 +32,7 @@ describe('SignInComponent', () => {
     .compileComponents();
   }));
 
-  it('should create the app', async(inject([AuthService], (myService: AuthService) => {
+  it('should create the app', waitForAsync(inject([AuthService], (myService: AuthService) => {
     const fixture = TestBed.createComponent(SignInComponent);
     const app = fixture.debugElement.componentInstance;
 
