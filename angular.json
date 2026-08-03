@@ -110,6 +110,17 @@
               "src/**/*.html"
             ]
           }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "landing-page-auth:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "landing-page-auth:serve:production"
+            }
+          }
         }
       }
     }

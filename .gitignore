@@ -112,3 +112,8 @@ angularfirebase-authentication-master.zip
 .angulardoc.json
 .firebase/hosting.ZGlzdFxsYW5kaW5nLXBhZ2UtYXV0aA.cache
 .angular/cache/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
