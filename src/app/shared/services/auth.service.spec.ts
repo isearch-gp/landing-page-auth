@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { waitForAsync, TestBed } from '@angular/core/testing';
 //import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing'
 
@@ -17,7 +17,7 @@ describe('AuthService', () => {
 
 /**** old ***/
 //beforeEach(() => TestBed.configureTestingModule({}));
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     imports: [
       AngularFireModule.initializeApp(environment.firebase),
@@ -33,7 +33,7 @@ describe('AuthService', () => {
 
 
   it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
+    const service: AuthService = TestBed.inject(AuthService);
     expect(service).toBeTruthy();
   });
 /***/
