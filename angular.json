@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "landing-page-auth:build"
+            "buildTarget": "landing-page-auth:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "landing-page-auth:build:production"
+              "buildTarget": "landing-page-auth:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "landing-page-auth:build"
+            "buildTarget": "landing-page-auth:build"
           }
         },
         "test": {
