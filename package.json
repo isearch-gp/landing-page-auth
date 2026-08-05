@@ -29,7 +29,7 @@
     "@ng-bootstrap/ng-bootstrap": "19.0.1",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "5.3.8",
-    "core-js": "3.39.0",
+    "core-js": "3.50.0",
     "firebase": "9.4.0",
     "firebaseui": "4.8.1",
     "ngx-ui-switch": "16.1.0",
