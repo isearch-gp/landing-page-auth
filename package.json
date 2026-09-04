@@ -30,7 +30,7 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "5.3.8",
     "core-js": "3.50.0",
-    "firebase": "9.4.0",
+    "firebase": "10.9.0",
     "firebaseui": "4.8.1",
     "ngx-ui-switch": "16.1.0",
     "rxjs": "7.8.2",
