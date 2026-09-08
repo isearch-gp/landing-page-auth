@@ -7,7 +7,7 @@
     "build": "ng build --configuration production",
     "test": "ng test --watch=false --browsers ChromeHeadless",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "playwright test",
     "deploy": "ng build --configuration production && firebase deploy"
   },
   "private": true,
@@ -29,7 +29,7 @@
     "@ng-bootstrap/ng-bootstrap": "19.0.1",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "5.3.8",
-    "core-js": "3.39.0",
+    "core-js": "3.50.0",
     "firebase": "9.4.0",
     "firebaseui": "4.8.1",
     "ngx-ui-switch": "16.1.0",
@@ -38,12 +38,12 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "20.3.32",
+    "@angular-devkit/build-angular": "20.3.36",
     "@angular-devkit/schematics": "^20.3.32",
     "@angular-eslint/eslint-plugin": "15.2.1",
     "@angular-eslint/eslint-plugin-template": "15.2.1",
     "@angular-eslint/template-parser": "15.2.1",
-    "@angular/cli": "20.3.32",
+    "@angular/cli": "20.3.36",
     "@angular/compiler-cli": "20.3.27",
     "@angular/language-service": "20.3.27",
     "@playwright/test": "1.62.1",
