@@ -125,7 +125,6 @@
       }
     }
   },
-  "defaultProject": "landing-page-auth",
   "cli": {
     "analytics": false
   }
