@@ -1,43 +1,59 @@
-import { waitForAsync, ComponentFixture, inject, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
-// Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire/compat";
-import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { environment } from '../../../environments/environment';
-
-// Auth service
-import { AuthService } from "../../shared/services/auth.service";
-
+import { AuthService } from '../../shared/services/auth.service';
 import { SignUpComponent } from './sign-up.component';
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;
   let fixture: ComponentFixture<SignUpComponent>;
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
 
-  beforeEach(waitForAsync(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 49000; // Chrome disconnects in 30s
-    
-    TestBed.configureTestingModule({
-      declarations: [ 
-	      SignUpComponent,
-      ],
-    imports: [
-      AngularFireModule.initializeApp(environment.firebase),
-      AngularFireAuthModule,
-      //AngularFirestore,
-      RouterTestingModule
-    ],
-    providers: [AuthService, AngularFirestore ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () => {
+    authServiceSpy = jasmine.createSpyObj<AuthService>('AuthService', ['SignUp']);
 
-    it('should create the app', waitForAsync(inject([AuthService], (myService: AuthService) => {
-    const fixture = TestBed.createComponent(SignUpComponent);
-    const app = fixture.debugElement.componentInstance;
+    await TestBed.configureTestingModule({
+      declarations: [SignUpComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [{ provide: AuthService, useValue: authServiceSpy }]
+    }).compileComponents();
 
-    expect(app).toBeTruthy();
-  })));
+    fixture = TestBed.createComponent(SignUpComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('disables sign up until the form is valid', () => {
+    const submitButton: HTMLButtonElement = fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement;
+
+    expect(submitButton.disabled).toBeTrue();
+
+    component.formGroup.setValue({
+      Email: 'new.user@example.com',
+      Password: 'password123',
+      acceptTerms: true
+    });
+    fixture.detectChanges();
+
+    expect(submitButton.disabled).toBeFalse();
+  });
+
+  it('submits the sign up form when valid', () => {
+    component.formGroup.setValue({
+      Email: 'new.user@example.com',
+      Password: 'password123',
+      acceptTerms: true
+    });
+    fixture.detectChanges();
+
+    fixture.debugElement.query(By.css('form')).triggerEventHandler('ngSubmit');
+
+    expect(authServiceSpy.SignUp).toHaveBeenCalledOnceWith('new.user@example.com', 'password123');
+  });
 });

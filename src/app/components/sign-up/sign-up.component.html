@@ -11,7 +11,7 @@
     <div class="authBlock">
       <h3>Sign Up</h3>
 
-      <form [formGroup]="formGroup" (validSubmit)="onSubmit(formGroup)">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
       <div class="mb-3">
 	<label class="control-label" hidden>Email</label>
         <input type="email" class="form-control" placeholder="Email Address"          formControlName="Email" aria-describedby="emailHelpBlock">
@@ -62,11 +62,8 @@
       </div>
 
 
-      <div *ngIf="formGroup.valid" class="formGroup">
-	      <button type="submit" class="btn btnPrimary">Sign Up</button>
-      </div>
-      <div *ngIf="formGroup.invalid" class="formGroup">
-	      <button type="button" class="btn btnSecondary" disabled>Sign Up</button>
+      <div class="formGroup">
+	      <button type="submit" class="btn btnPrimary" [disabled]="formGroup.invalid">Sign Up</button>
       </div>
       </form>
     </div>
