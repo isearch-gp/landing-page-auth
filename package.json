@@ -62,7 +62,7 @@
     "karma-jasmine-html-reporter": "^2.1.0",
     "playwright-ng-schematics": "^20.0.2",
     "ts-node": "10.9.2",
-    "typescript": "~5.9.2"
+    "typescript": "~7.0.0"
   },
   "optionalDependencies": {
     "fsevents": "^2.1.2"
