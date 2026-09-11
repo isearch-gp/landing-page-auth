@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@angular/animations": "20.3.31",
-    "@angular/common": "20.3.27",
+    "@angular/common": "20.3.28",
     "@angular/compiler": "20.3.31",
     "@angular/core": "20.3.27",
     "@angular/fire": "20.0.1",
