@@ -20,7 +20,7 @@
     "@angular/common": "20.3.32",
     "@angular/compiler": "20.3.32",
     "@angular/core": "20.3.32",
-    "@angular/fire": "20.0.1",
+    "@angular/fire": "20.1.0",
     "@angular/forms": "20.3.32",
     "@angular/localize": "20.3.32",
     "@angular/platform-browser": "20.3.32",
